@@ -1,0 +1,158 @@
+********************************************************************DAY-4*********************************************************************
+
+*************DYNAMIC MEMORY ALLOCATION
+ "new"->is a operator allocate mem dynamically
+ "delete"->is a operator deallocate that mem we used
+ "dangling pointer"->pointer which contain address of deallocated mem
+ "memory leakage"->When we allocate space in memory, and if we loose pointer to reach to that memory then such wastage of memory
+
+DIFFERENCE B/W NEW AND DELETE W.R.T MALLOC AND FREE: 
+->here new gives type casted pointer whereas malloc retruns void pointer( new aware of datatype and malloc doesn't)
+e.g int *ptr=new int;     //int *p=(int *)malloc(4);  since only one integer 1*4, where sizeof(int)=4
+
+->new is a operator and malloc is a function
+
+->new and delete are associated operator
+
+->delete is a operator and free is a fn
+ e.g. delete ptr; //free(p);
+
+//refer demo1.cpp
+->TO ALLOCATE MEM TO ARRAY:
+int *ptr=new int[n]; //here n=5 is no.of elements to be allocated    //int *p=(int*)malloc(20); here array of 5 elements
+
+->TO DEALLOCATE MEM WE USED
+delete []ptr; //here array symbol is req
+
+NOTE::::MALLOC() CANT ABLE TO CALL CONSTRUCTOR(IF WE CREATE OBJ WE MUST CALL CONSTRUCTOR), AS IF MALLOC() IS UNAWARE OF DATATYPE ->SO THEY INTRODUCED "NEW". 
+	WHEREAS FREE() CANT ABLE TO CALL DESTRUCTOR, AF FREE() IS UNAWARE OF DATATYPE -> SO THEY INTRODUCED "DELETE".
+
+NOTE::::IF NEW FAILS TO ALLOCATE MEM, IT WILL RETURN "RUNTIME EXCEPTION" CALLED AS "bad_alloc" whereas in malloc() fails to allocate me it returns a "NULL"
+
+NOTE:::OBJ GET CREATED ON HEAP SECTION , HENCE OBJ IS CALL HEAP BASED OR DYNAMIC OBJECT
+	
+//refer demo2.cpp	
+Complex *cptr= new Complex(11,22); //11 is real and 22 is img , here cptris used to store the address of Complex class object
+delete cptr; //to release the mem
+cptr=NULL; //done not to become dangling pointer //nullptr is used in cpp mostly
+
+
+***********DEEP COPY(member-wise copy) AND SHALLOW COPY(bit-wise copy)
+//refer mam notes
+->these are two types of copying a obj
+
+NOTE::::::: if we are not giving copy constructor then compiler gives us
+
+//refer demo3.cpp ->run this code by removing array(const array& int){...} using ***valgrind tool*** and observe error in the code that demonstrates dangling pointer.
+here inside class->inside constructor we allocate mem using new and inside destructor we deallocate mem using delete
+
+NOTE::::in palindrome after reversing a string like one, we compare with original string so we need copy of it , here i n these cases we use copy constructor 
+
+COPY CONSTRUCTOR-> copies the 
+//refer diagram in mam notes
+
+*******DESIGN PATTERNS
+//refer mam notes
+
+//refer demo5.cpp->asked in interview(singleton)
+
+********FRIEND
+->avoid using it, because it is reducing the quality of code.
+
+
+NOTE::: CPP IS NOT A PURE OOP BECAUSE:
+	->you can write code without creatinfg a class in cpp, and main() is a global fn
+	->support primitive data types(int,char etc...) instances(variable) of these primitive types are NOT objects.
+	->cpp provides "Friend",which is absolute corruption to the OO-principle of encapsulation
+
+
+*******OPERATOR OVERLOADING
+"operator"->is token in c/cpp, & it is used to generate expression.
+TYPES OF OPERATOR:
+	1]UNARY OPERATOR(++,--,&,!,~,sizeof())
+	2]BINARY OPERATOR(arthimetic,relational,logical,bitwise,assignment)
+	3]TERNARY OPERATOR(conditional , ?: )
+
+we can define operator fn using 2 ways:
+	1]memeber fn
+	2]non-member fn
+
+//refer demo7.cpp
+->c4=operator-(c1,c2)=>if we write as global fn--> here we can use {friend fn} or { setter & getter fn }
+->c4=c1.operator+c2=>if we write inside the classs
+
+[]->used for subscript/index
+()->used for function call
+
+**********EXCEPTION HANDLING
+//refer mam notes
+3 keywords in cpp:
+try->block {code i.e. to be inspected}
+catch()->block {here () brackets are used to catch the value i.e. throwed from try block}
+throw->jump statement
+
+NOTE::: after try next catch block will come and in between nothing should be there
+
+
+*************TEMPLATE CLASS
+
+template is "generic programming"->not bounded/restricted to any prototype
+e.g.if we want to write swap fn for all datatypes
+
+SYNTAX: template<class T>  //this T is a placeholder inside the fn, so where datatype is written replace it with T
+//refer demo10.cpp
+
+*********CONVERSION FUNCTION
+//REFER demo12.cpp
+->it is conversion of int to obj and vice versa we use one parameterized constructor
+
+*************SMART POINTER
+->C++ comes up with its own mechanism that’s Smart Pointer to avoid memory leak
+
+Types of Smart Pointers:
+1. unique_ptr:
+	->unique_ptr stores one pointer only.
+	->We can assign a different object by removing the current object from the pointer.
+2. shared_ptr
+	->By using shared_ptr more than one pointer can point to this one object at a time 
+           & it’ll maintain a Reference Counter using use_count() method.
+3. weak_ptr
+	->It’s much more similar to shared_ptr except it’ll not maintain a Reference Counter.
+	-> In this case, a pointer will not have a stronghold on the object.
+          (The reason is if suppose pointers are holding the object and requesting for other objects then they may form a Deadlock.)
+
+
+1Q:)IN CPP, WHY WE REQUIRE OPERATORS NEW AND DELETE EVEN THOUGH WE HAVE FUNCTIONS LIKE MALLOC AND FREE , SO DIFFERENCE B/W NEW AND DELETE W.R.T MALLOC AND FREE?
+
+2Q:)DIFFERENCE BETWEEN DEEP COPY AND SHALLOW COPY?
+
+3Q:)DIFFERENCE BETWEEN STATIC IN C AND CPP?
+
+4Q:)WHY WE NEED TO DO GLOBAL DEFINITION IF WE HAVE STATIC DATA MEMBER IN OUR CLASS?
+
+5Q:) WHY STATIC DATA MEMBER SIZE IS NOT INCLUDED IN ITS SIZE OF THE OBJECT?(in c shared mem b/w all the fn calls whereas in cpp shared mem b/w all the objects , justify this also)
+//refer demo4.cpp
+
+6Q:)WHAT IS REAL LIFE EXAMPLE OF USAGE OF STATIC?
+
+7Q:)if there is any fn that only works on static data member and we want to call that fn, without taking help of any obj we call static fn(function) how this happens and tell why static member fn do not take this pointer?
+
+
+8Q:) CLEARLY EXPLAIN ME ABOUT DESIGN PATTERNS
+
+9Q:) Tell about friend(), and tell why it is opposite of oops concept?
+
+10Q:)Explain why cpp is not a pure oops because?
+
+11Q:)Explain exception handling in cpp
+
+12Q:)exception handling instead of try catch we can use if else block know? if not why?
+
+13Q:)in inheritance, of exception handling why child class catch should written first?
+
+14Q:)tell me all rules of try catch throw in cpp?
+
+15Q:)Explain about conversion function
+
+ANSWERS:::::::::::::::::
+https://chatgpt.com/share/67a8849f-ba38-800c-9415-e86f4838270f

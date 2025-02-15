@@ -1,0 +1,137 @@
+********************************************************************DAY-2***********************************************************************
+*************CLASS:
+1)def of class:->'Class is collection of logically related data members and data functions.'
+=>So, we can say that "Structure" can be replaced with "class".
+=>already structure named entity is there, but class is used because of creating object ,(i.e we learn OOPS we use class)
+
+2)There is a small diff b/w Structure and class:
+all the members of class by default "private" 
+whereas all the members of structure by default "public".
+
+struct time{
+	int hr;  //4 bytes
+	int min; //4 bytes
+	int sec; //4 bytes
+	void accept(){
+		scanf("%d:%d:%d",this->hr,this->min,this->sec); //or scanf("%d:%d:%d",&hr,&min,&sec); //here writing this pointer is not compulsory but recommended practice
+	}
+};
+
+int main(){
+	time t; //here t is variable w.r.t to structure and t is object w.r.t to Class; //sizeof(t)=12 bytes of mem is allocated(since data member will get the mem in stack , so its is called stack-based object) and note that data functions are allocates its mem in code section
+		//we can create multiple objects --->REFER DIAGRAM IN NOTES
+	t.accept();  //here object with dot operator is there so called as "current or calling obj"
+		//it works same like accept(&t) as if this we do in c, similarly in cpp compiler collects the address of object(t) as if it takes as parameter inside accept() and we can say that in t.accept();-->t also acts as pointer type variable and name of that pointer type var is "this"
+}
+
+3)Building block that binds together data and code.
+
+4)Program is divided into different classes.
+
+5)Class represents set/group of such objects which is having common structure and common behaviour.
+
+6)Class is logical entity.
+
+7)Class has
+• Variables (data members)
+• Functions (member functions or methods)
+
+8)By default class members are private( not accessible outside class scope)
+
+9)Classes are stand-alone components & can be distributed in form of libraries
+
+10)structure and class both are logical entity(as if for them mem is not allocated).
+
+11)in c we have functions library and in cpp we have form of libraries for classes
+
+12)"Class is a blueprint of an object"
+
+**************OBJECT:
+
+1)object is instance of class
+
+2)Entity that has physical existence, can store data.
+
+3)An entity, which get space inside memory is called object.
+
+4)Object is used to access data members and member function of the class
+
+5)Process of creating object from class is "instantiation".
+
+6) Object has:
+	->State of Object(data member) ->{value stored inside data member}
+	->behaviour of object(member function)
+	->identity of object(unique address)->{state of object of diff obj can be same but its address can be "unique" considered as identity}
+
+
+1Q:)All differences between class and object in cpp?	
+
+INTERVIEW->2Q:)If can we create empty class and object of empty class and how can we find size of that object?
+	   ANS: yes, 1 byte =sizeof(object) -->a class which do not have data member and member function is called "empty class".
+because, of the unique addreess of object (i.e identity of object) , i.e. compiler need to maintain the physical entity of 							 	 object, so allocates min mem of 1 byte to this object.
+
+************THIS POINTER:
+
+3Q:)What is this pointer?(In cpp,java,c#-->this and in python-->self)
+
+4Q:) can we change the address struct time t; , here t obj address can be changed ?, then in cpp, for this pointer can we also change the address of it? 
+	ANS: no, THIS POINTER IS A const pointer and taken care by compiler
+
+5Q:) what is difference between argument and parameter in functions?
+
+6Q:) how this pointer doing linking b/w object and member function in cpp?
+
+7Q:) why folowing functions do not get this pointer (global function, static member funtion, friend function)?
+ans:global function->It is not inside any class.
+static member funtion->It belongs to the class, not an object.
+friend function->It is not a member function, just a normal function with special access.
+
+**********TYPES OF MEMEBER FUNCTIONS WITHIN CLASS:
+
+->1]Constructor :object initalization(to initialize the data member)
+NOTE: Whenever object is created constructor is created for sure
+Due to following reasons constructor is called "special member/function of class":
+i)its name is given same as class name as if it is understood by compiler inside the class.
+ii)it does not have any return type
+iii)this fn is designed to call implicitly (automatically)
+iv)this fn is called only once in the life time of object
+
+NOTE:TYPES OF CONSTRUCTOR:
+->parametrized constructor(class_name(int,int,int))-->{one/more arguments} & {copy constructor(creates a new object as a copy of an existing object.)}
+->parameterless constructor (class_name())-->{no arguments}
+->default constructor-->{if we wont give constructor then compiler gives default constructor(it has empty curly brackets)}
+
+->2]Destructor  :used to release the resources
+NOTE: Destructor dont delete/destroy object, but it only release the resources
+and it is called when object is going/about to destroy  and compiler does this 
+Due to following reasons constructir is called "special member/function of class":
+i)its name is given same as class name with preceds tilde operator(~) as if it is understood by compiler inside the class.
+ii)it doesn't have return type or does not take parameter
+iii)it is designed to call implicitly
+
+IMP POINTS:
+=>inside main() --> we write constructors and in opposite direction we write destructors -->since inside main FAR is stored in stack, so constructors are stored in stack (i.e. STACK-BASED->LIFO) that is the reason destructors follows exactly opposite direction of constructors calling sequence
+=>destructor wont take any input parameter(since it is about to destroy) so there is no concept of destructor overload
+=>Parameterized and parameterless constructor combinedly written with the help of default arguments (e.g.time(int hr=0,int min=0,int sec=0{..})
+
+
+->3]Mutators / setter : modify state of object
+
+->4]inspector/getter : read the data member but do not change the state of the object
+
+->5]Facilitator : Provide extra facility to work with object
+
+8Q:) can constructor can also be written in private also?
+
+9Q:) What is class and object? Give real-life example. 
+10Q;) What are characteristics of object? Explain them.
+11Q:). Why constructor is considered special member function of the class?
+12Q:). What is "this" pointer? Is it available for static, virtual, const and friend functions? 
+
+ANSWERS::::::::::::::::::::::::::::
+https://chatgpt.com/share/67a0efb1-76f4-800c-9ff8-9d161be6b2de
+
+
+
+
+

@@ -1,0 +1,203 @@
+********************************************************************DAY-3************************************************************************
+->3]Mutators / setter : modify state of object
+inside main: time t_p(12,23,45); //object of class time
+  	     t_p.setMin(14);
+
+inside class: class time{
+		........
+		void setMin(int min){ //here min name is local var
+			this->min=min; //here to differentiate ,this->min means min is object of current class
+		}
+//setter fn is identified by preceding with 'set' in fn name and fn return type is void
+
+
+
+->4]inspector/getter : read the data member but do not change the state of the object
+inside main: time t_p(12,23,45); //object of class time
+  	     int s=t_p.getMin(14);
+
+inside class: class time{
+		........
+		int getMin(int min){ //here min name is local var
+			return this->min; //here to differentiate ,this->min means min is object of current class
+		}
+//getter fn is identified by preceding with 'get' in fn name and fn return type is int
+
+
+->5]Facilitator : Provide extra facility to work with object
+//fn which are not constructor, getter,setter , destructor then remaining fn are called as facilitator fn
+e.g1.void printTime()
+        {
+            printf("\n Time=%d:%d:%d",this->hr,min,sec);
+        }
+e.g2.void acceptTime()
+        {
+            printf("\n Enter time");
+            scanf("%d%d%d",&this->hr,&this->min,&this->sec);
+        }
+
+
+********SCOPE RESOLUTION OPERATOR
+• :: operator is used to bind a member with some class or namespace.
+• It can be used to define members outside class.
+• Also used to resolve ambiguity.
+• It can also be used to access global members.
+• Example :- ::a =10; access global var.
+• Scope resolution Operator is used to :
+• to call global functions
+• to define member functions of class outside the class
+• to access members of namespaces
+
+//REFER demo2.cpp
+->to access the member of namespace we use scope resolution operator
+->namespace gives scope to the var(i.e. to resolve the ambuiguity errors when same var is declared one/more times )
+->no mem allocation for namespace
+->namespace is just grouping of code
+->we can not define namespace inside fn/class and main fn inside namespace.
+->namespace can contain : var,fn,types(structure/union/class),enum,nested namespace
+e.g.
+namespace ns1{
+	int connector=2200; //port no.2200
+	namespace nss1{
+		int var=14;
+	}
+}
+namespace ns2{
+	int connector=3307; //port no.=3307 of sql i.e. for database we take it
+}
+
+inside main:
+	printf("%d",ns2::connector);
+	printf("%d",ns1::nns1::var); //first outer fn namespace::innner fn namespace::var
+	using namespace ns2:
+	printf("n1=%d",n1); //here we can directly access n1 as if we want to access n1 frequently
+
+
+NOTE:::: IF WE WANT TO ACCESS THE MEMBERS OF NAMESPACE FREQUENTLY, THEN WE SHOULD "USING" directive
+•If we define member without namespace then it is considered as member of global namespace.
+•If we want to access members of namespace frequently then we should use “using” directive.
+
+
+*********************cin and cout
+
+->it is easier way for i/p abd o/p
+
+console output:
+cout<<"hello";  //here "<<" is "insertion operator"-->same as "printf()" in c
+
+console input:
+cin>>var;   //here ">>" is "extraction operator" --->same as "scanf()" in c
+
+->cin and cout are the objects of inbuilt class istream and ostream respectively and these are declared in 
+'namespace std _GLIBCXX_VISIBILITY(default)'
+--->#include<iostream>  //here .h we dont write
+    using namespace std; //it is used as if we use lot of times cin and cout so we use the help of using directive.
+
+//in c we use format specifier but in cpp we dont need to use it , as if there is no tension of thinking about data type in cpp.
+e.g.in c-->printf("\n val of x=%d and val of y=%d",x,y);
+    in cpp-->cout<<"\n val of x=<<x<<" and val of y="<<y;
+
+e.g.in c--->scanf("%d%d",&x,&y);
+    in cpp---->cin>>x>>y;
+
+
+************complex class:
+e.g. 5+j7 //here data member=real, imaginary
+//refer demo4.cpp
+
+***********MODULAR APPROACH
+-->means divide our code into 3 parts
+1]fn declaration of class->written in complex.h file
+2]definition of class->written in complex.cpp
+3]usage of class->written in program.cpp
+
+-->"usr/include" directory is called standard dir for header files.
+
+NOTE: complex.h file dont compile instead we use inside the header of complex.cpp
+
+
+****************Constant in cpp
+e.g this pointer is constant pointer in cpp
+//refer demo6.cpp
+//in this initialization and declaration must be in single line 
+e.g. in c-->const int c=100;
+     c++: //gives the error 
+     c=19;//gives the error, since we can read the value of var but we cant update it
+
+//"initializer list"->compiler is suggesting that if you have const data member then you have to initialize in the special location i.e. inside constructor list
+//An initializer list in C++ is used to initialize data members of a class before the constructor body executes. It is written after the constructor’s parameter list and before the constructor’s body.
+e.g. in cpp-->inside class constDemo{
+		....
+		constDemo():c(100)  //constructor member initialization list 
+    		{
+    			.....
+    		}
+     
+
+//in cpp we can make data member and only member function (i.e.,inside class) as const but in c only data member can be const;
+//const member fn dont allow data member modification inside it
+e.g., void printData const{
+	n++; //gives error
+	c++; //gives error
+	p++; //gives error
+	cout<<"\n n=<<n;
+	...
+	}
+
+//NOTE::: inside the const member fn , there is a need of modifiying data member then in cpp we have to use mutable data member
+"mutable data member"-->it can be modified by a const member function.
+e.g. 
+class Example{
+    int x;
+    mutable int n; // Mutable data member
+    .....
+    void printData const{
+	n++; //correct one
+	c++; //gives error
+	p++; //gives error
+	cout<<"\n n=<<n;
+	...
+	}
+};
+
+
+
+******************REFERENCES
+
+->By references var, we will be alias or other var name to that existing var, which stores the data
+->reference(ref) var means creating other name of existing memory
+->whenever we declare ref var, you must initialize it 
+
+syntax to create reference: "int& ref=n1;"
+
+//refer demo7.cpp and demo8.cpp
+
+//see diff b/w pointer and references in notes
+
+
+NOTE:::: WE PASS OBJECT AS A PARAMETER INSIDE FUNCTION (ALWAYS PASS BY REFERENCE) IN CPP-->REFER demo9.cpp
+
+
+
+
+
+
+
+
+1Q:)how do you compile the code written inside the notepad ?
+
+2Q:)what is initializer list in cpp?
+
+3Q:) all differences between references and pointers?
+
+4Q:) why this type of reference variable is required in cpp?
+
+5Q:) why WE PASS OBJECT AS A PARAMETER INSIDE FUNCTION (ALWAYS PASS BY REFERENCE) IN CPP?
+
+6Q:)what is copy constructor and tell me w.r.t references in cpp?
+
+
+ANSWERS:::::::::::::::::::
+https://chatgpt.com/share/67a2762b-6a88-800c-8e37-0efb6fb8b3e7
+
+

@@ -1,0 +1,57 @@
+1)inside a user defined void function, if i write printf("hello world"); , then in FAR what it will store?
+
+2)why users value follows assignment from left to right and default arguments values follows assignment from right to left inside function arguments in programming?
+
+3)why function overloading possible in cpp and why not in c?
+
+4)does default arguments possible in function overloading in cpp?
+
+5)what is name mangling in cpp?
+
+6)why return type is not allowed in function overloading in cpp?
+
+7)why return value is not considered while mangled name?
+
+8)C(gcc compiler) versus Cpp(g++ compiler)(include in form of table that include all its diffferences, applications, advantages, disadvantages......)
+
+9)datatypes in cpp
+
+10)bool and wchar_t(wide character?) in cpp?(what is size of it)
+NOTE=>In practice, wchar_t is 32 bits and holds UTF-32 on Linux and many other non-Windows systems, but 16 bits and holds UTF-16 code units on Windows
+*->{UTF-16 (16-bit Unicode Transformation Format) is a character encoding system that uses 16-bit code units to represent Unicode code points. It's a variable-length encoding that can represent all 1,112,064 valid code points in Unicode.}
+ANS====Key points about bool and wchar_t:
+bool:
+Represents logical values: true or false 
+Usually takes up 1 byte of memory 
+wchar_t:
+Represents a wide character, which can accommodate a larger range of characters compared to a standard char 
+Size depends on the system, but commonly 2 bytes on Windows systems, allowing for UTF-16 encoding 
+
+
+11)after compiling a code with name demo.cpp, we do g++ demo.cpp and then we do ./a.out why so?
+
+12)struct time{ int min, int sec }; now inside main we declare object as struct time t; now, memory will be allocated in main function activation record after creating object to that structure and how this all happens?
+
+13)In cpp, what are extra terminologies added in structures compared to c in for table tell me ?(include::::->tell why in c logically related data is written in structres but in cpp logically related functions are also written inside structure ; ->Access modifiers: C++ structures can use access modifiers like "public" and "private" to control data visibility. ->Direct initialization allowed: You can directly initialize data members when defining a C++ structure. )
+
+14)UML (Unified Modeling Language), "access specifiers" refer to symbols used to indicate the visibility level of class attributes and methods, showing whether they can be accessed by other classes, with common access levels being "public" (+), "private" (-), and "protected" (#), visually representing how accessible a member of a class is to other parts of the program within a class diagram. 
+*>Symbol representation:
+->Public (+): A plus sign indicates that the attribute or method can be accessed from anywhere. 
+->Private (-): A minus sign indicates that the attribute or method can only be accessed within the same class. 
+-> Protected (#): A hash symbol indicates that the attribute or method can be accessed within the same class and its subclasses. 
+
+15)why do we do inline in cpp?
+
+16)The compiler may not perform inlining in such circumstances as: 
+If a function contains a loop. (for, while and do-while) 
+If a function contains static variables. 
+If a function is recursive. 
+If a function return type is other than void, and the return statement doesn’t exist in a function body. 
+If a function contains a switch or goto statement. 
+but in these cases also i am getting output why so?
+
+
+CHATGPT ANSWERS LINK:
+https://chatgpt.com/share/679e81ba-b430-800c-a1e7-099603c334f5
+
+
